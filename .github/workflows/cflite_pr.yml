@@ -26,6 +26,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         sanitizer: ${{ matrix.sanitizer }}
         language: jvm
+        allowed-broken-targets-percentage: 40  # because we copy the jazzer bin into $SRC, and cflite treats it like a target
         # Optional but recommended: used to only run fuzzers that are affected
         # by the PR.
         # See later section on "Git repo for storage".
