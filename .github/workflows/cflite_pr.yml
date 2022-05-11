@@ -25,7 +25,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         sanitizer: ${{ matrix.sanitizer }}
-        language: java
+        language: jvm
         # Optional but recommended: used to only run fuzzers that are affected
         # by the PR.
         # See later section on "Git repo for storage".
