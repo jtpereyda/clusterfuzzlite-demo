@@ -22,7 +22,7 @@ BUILD_CLASSPATH=$JAZZER_API_PATH
 RUNTIME_CLASSPATH=\$this_dir
 
 env
-cp "$SRC/jazzer" "/bin/jazzer"
+cp "$SRC/jazzer" "$OUT/jazzer"
 cp "$SRC/jazzer_agent_deploy.jar" "$OUT/jazzer_agent_deploy.jar"
 
 for fuzzer in $(find $SRC -name '*Fuzzer.java' -or -name '*FuzzerNative.java'); do
@@ -43,7 +43,7 @@ for fuzzer in $(find $SRC -name '*Fuzzer.java' -or -name '*FuzzerNative.java'); 
 this_dir=\$(dirname \"\$0\")
 LD_LIBRARY_PATH=\"$JVM_LD_LIBRARY_PATH\":\$this_dir/native \
 ASAN_OPTIONS=\$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=\$this_dir/llvm-symbolizer:detect_leaks=0 \
-\/bin/$driver --agent_path=\$this_dir/jazzer_agent_deploy.jar \
+\$this_dir/$driver --agent_path=\$this_dir/jazzer_agent_deploy.jar \
 --cp=$RUNTIME_CLASSPATH \
 --target_class=$fuzzer_basename \
 --jvm_args=\"-Xmx2048m\" \
