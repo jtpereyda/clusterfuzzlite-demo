@@ -22,7 +22,7 @@ BUILD_CLASSPATH=$JAZZER_API_PATH
 RUNTIME_CLASSPATH=\$this_dir
 
 env
-cp "$SRC/jazzer" "$OUT/jazzer"
+# cp "$SRC/jazzer" "$OUT/jazzer"
 cp "$SRC/jazzer_agent_deploy.jar" "$OUT/jazzer_agent_deploy.jar"
 
 for fuzzer in $(find $SRC -name '*Fuzzer.java' -or -name '*FuzzerNative.java'); do
@@ -30,11 +30,7 @@ for fuzzer in $(find $SRC -name '*Fuzzer.java' -or -name '*FuzzerNative.java'); 
   javac -cp $BUILD_CLASSPATH $fuzzer
   cp $PWD/$fuzzer_basename.class $OUT/
 
-  if [[ $fuzzer_basename == *FuzzerNative ]]; then
-    driver=jazzer_driver_with_sanitizer
-  else
-    driver=jazzer
-  fi
+  driver=jazzer_driver
 
   cp default.options $OUT/"$fuzzer_basename".options
   # Create execution wrapper.
