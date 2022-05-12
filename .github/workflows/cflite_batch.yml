@@ -19,6 +19,7 @@ jobs:
         id: build
         uses: google/clusterfuzzlite/actions/build_fuzzers@v1
         with:
+          language: jvm
           sanitizer: ${{ matrix.sanitizer }}
       - name: Run Fuzzers (${{ matrix.sanitizer }})
         id: run
