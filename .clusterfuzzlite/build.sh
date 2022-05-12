@@ -16,13 +16,27 @@
 ################################################################################
 
 
-BUILD_CLASSPATH=$JAZZER_API_PATH
+#mvn package
+
+#mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -Dartifact=com.fasterxml.jackson.core:jackson-databind:2.13.2.2
+mvn package
+
+CURRENT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate \
+-Dexpression=project.version -q -DforceStdout)
+ls -la .
+pwd
+env
+cp "target/clusterfuzzlite-demo-$CURRENT_VERSION-jar-with-dependencies.jar" $OUT/clusterfuzzlite-demo.jar
+
+PROJECT_JARS="clusterfuzzlite-demo.jar"
+
+
+# All .jar and .class files lie in the same directory as the fuzzer at runtime.
+BUILD_CLASSPATH=$(echo $PROJECT_JARS | xargs printf -- "$OUT/%s:"):$JAZZER_API_PATH
 
 # All class files lie in the same directory as the fuzzer at runtime.
-RUNTIME_CLASSPATH=\$this_dir
+RUNTIME_CLASSPATH=$(echo $PROJECT_JARS | xargs printf -- "\$this_dir/%s:"):\$this_dir
 
-env
-# cp "$SRC/jazzer" "$OUT/jazzer"
 cp "$SRC/jazzer_agent_deploy.jar" "$OUT/jazzer_agent_deploy.jar"
 
 for fuzzer in $(find $SRC -name '*Fuzzer.java' -or -name '*FuzzerNative.java'); do

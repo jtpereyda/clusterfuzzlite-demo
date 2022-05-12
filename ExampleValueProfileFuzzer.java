@@ -40,7 +40,7 @@ public class ExampleValueProfileFuzzer {
         // stuck here as the value profile information for long comparisons would not be able to
         // distinguish between this comparison and the one above.
         if (insecureEncrypt(plaintextBlocks[1]) == 0x888a82ff483ad9c2L) {
-          mustNeverBeCalled();
+//          mustNeverBeCalled();
         }
       }
     }
