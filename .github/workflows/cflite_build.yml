@@ -25,3 +25,4 @@ jobs:
         with:
           sanitizer: ${{ matrix.sanitizer }}
           upload-build: true
+          language: jvm
