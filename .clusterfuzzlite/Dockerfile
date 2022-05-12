@@ -15,7 +15,7 @@
 ################################################################################
 
 FROM gcr.io/oss-fuzz-base/base-builder-jvm
-#RUN apt-get update && apt-get install -y maven
+RUN apt-get update && apt-get install -y maven
 RUN wget -qO- "https://github.com/CodeIntelligenceTesting/jazzer/releases/download/v0.11.0/jazzer-linux-0.11.0.tar.gz" | tar xvz -C "$SRC"
 
 #COPY build.sh $SRC/

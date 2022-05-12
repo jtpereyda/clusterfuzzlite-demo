@@ -27,7 +27,8 @@ public class ExampleFuzzer {
     long random = 123123132;
     if (input.startsWith("magicstring" + random) && input.length() > 30
         && input.charAt(25) == 'C') {
-      throw new IllegalStateException("Not reached");
+      // commenting out trivial crash so that we don't see crashes in CI/CD
+//      throw new IllegalStateException("Not reached");
     }
   }
 }
