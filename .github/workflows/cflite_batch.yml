@@ -1,7 +1,7 @@
 name: ClusterFuzzLite batch fuzzing
 on:
   schedule:
-    - cron: '0/10 0 * * *'  # Every hour.
+    - cron: '*/10 * * * *'  # Every hour.
 permissions: read-all
 jobs:
   BatchFuzzing:
