@@ -1,7 +1,7 @@
 name: ClusterFuzzLite cron tasks
 on:
   schedule:
-    - cron: '15/30 * * * *'
+    - cron: '20/30 * * * *'
 permissions: read-all
 jobs:
   Pruning:
@@ -21,6 +21,6 @@ jobs:
           mode: 'prune'
           # Optional but recommended.
           # See later section on "Git repo for storage".
-         storage-repo: https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/jtpereyda/clusterfuzzlite-demo-corpus.git
-         storage-repo-branch: main   # Optional. Defaults to "main"
-         storage-repo-branch-coverage: gh-pages  # Optional. Defaults to "gh-pages".
+          storage-repo: https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/jtpereyda/clusterfuzzlite-demo-corpus.git
+          storage-repo-branch: main   # Optional. Defaults to "main"
+          storage-repo-branch-coverage: gh-pages  # Optional. Defaults to "gh-pages".
