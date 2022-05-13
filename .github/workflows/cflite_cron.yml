@@ -1,7 +1,7 @@
 name: ClusterFuzzLite cron tasks
 on:
   schedule:
-    - cron: '0 0 * * *'  # Once a day at midnight.
+    - cron: '15/30 * * * *'
 permissions: read-all
 jobs:
   Pruning:
